@@ -1,3 +1,4 @@
+# EFK logging stack
 elasticsearch:
   image: elasticsearch:latest
   command: elasticsearch -Des.network.host=0.0.0.0
@@ -11,7 +12,7 @@ kibana:
   volumes:
     - ./kibana/config/kibana.yml:/opt/kibana/config/kibana.yml
   ports:
-    - "8080:5601"
+    - "5601:5601"
   links:
     - elasticsearch
 fluentd:
@@ -20,3 +21,19 @@ fluentd:
     - "24224:24224"
   links:
     - elasticsearch
+
+# Alfred
+alfreddata:
+  image: alpine
+  entrypoint: /bin/true
+  volumes:
+    - /usr/local/tomcat/nets
+alfred:
+  image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/alfred:latest
+  ports:
+    - "8080:8080"
+  environment:
+    - FLUENTD_HOST=localhost
+    - HOSTNAME=alfred
+  volumes_from:
+    - alfreddata
