@@ -34,6 +34,6 @@ alfred:
     - "8080:8080"
   environment:
     - FLUENTD_HOST=localhost
-    - HOSTNAME=alfred
+    - HOSTNAME=alfred-docker
   volumes_from:
     - alfreddata
