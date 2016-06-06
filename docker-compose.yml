@@ -37,3 +37,28 @@ alfred:
     - HOSTNAME=alfred-docker
   volumes_from:
     - alfreddata
+
+# MySQL
+mysql:
+  image: mysql
+  ports:
+    - "3306:3306"
+  environment:
+    - MYSQL_ROOT_PASSWORD=docker
+    - MYSQL_DATABASE=engine
+
+# Engine
+engine:
+  image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/engine:latest
+  ports:
+    - "80:8080"
+  environment:
+    - ALFRED_URL=http://localhost:8080
+    - FLUENTD_HOST=localhost
+    - HOSTNAME=engine-docker
+    - RDS_PASSWORD=docker
+    - RDS_HOSTNAME=mysql
+    - SERVER_URL=http://localhost
+  env_file: .env
+  links:
+    - mysql
