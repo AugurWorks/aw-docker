@@ -35,20 +35,11 @@ rabbitmq:
 
 
 # Alfred
-alfreddata:
-  image: alpine
-  entrypoint: /bin/true
-  volumes:
-    - /usr/local/tomcat/nets
 alfred:
   image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/alfred:latest
-  ports:
-    - "8080:8080"
   environment:
     - FLUENTD_HOST=fluentd
     - HOSTNAME=alfred-docker
-  volumes_from:
-    - alfreddata
   links:
     - fluentd
     - rabbitmq
@@ -68,7 +59,6 @@ engine:
   ports:
     - "80:8080"
   environment:
-    - ALFRED_URL=http://localhost:8080
     - FLUENTD_HOST=fluentd
     - HOSTNAME=engine-docker
     - RDS_PASSWORD=docker
