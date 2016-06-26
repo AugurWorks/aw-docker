@@ -33,6 +33,12 @@ rabbitmq:
   volumes_from:
     - rabbitmqdata
 
+# MySQL Alfred
+mysql-alfred:
+  image: mysql
+  environment:
+  - MYSQL_ROOT_PASSWORD=docker
+  - MYSQL_DATABASE=alfred
 
 # Alfred
 alfred:
@@ -40,15 +46,16 @@ alfred:
   environment:
     - FLUENTD_HOST=fluentd
     - HOSTNAME=alfred-docker
+    - RDS_PASSWORD=docker
+    - RDS_HOSTNAME=mysql-alfred
   links:
+    - mysql-alfred
     - fluentd
     - rabbitmq
 
-# MySQL
+# MySQL Engine
 mysql:
   image: mysql
-  ports:
-    - "3306:3306"
   environment:
     - MYSQL_ROOT_PASSWORD=docker
     - MYSQL_DATABASE=engine
