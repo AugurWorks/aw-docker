@@ -22,15 +22,8 @@ fluentd:
     - elasticsearch
 
 # RabbitMQ
-rabbitmqdata:
-  image: alpine
-  entrypoint: /bin/true
-  volumes:
-    - /var/lib/rabbitmq
 rabbitmq:
   image: rabbitmq
-  volumes_from:
-    - rabbitmqdata
 
 
 # Alfred
