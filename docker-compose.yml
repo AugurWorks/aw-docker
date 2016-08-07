@@ -28,7 +28,6 @@ rabbitmq:
 alfred:
   image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/alfred:latest
   environment:
-    - FLUENTD_HOST=fluentd
     - HOSTNAME=alfred-docker
   links:
     - fluentd
