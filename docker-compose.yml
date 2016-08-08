@@ -26,7 +26,7 @@ rabbitmq:
 
 # Alfred
 alfred:
-  image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/alfred:latest
+  image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/alfred:latest-dev
   environment:
     - HOSTNAME=alfred-docker
   links:
@@ -44,7 +44,7 @@ mysql:
 
 # Engine
 engine:
-  image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/engine:latest
+  image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/engine:latest-dev
   ports:
     - "80:8080"
   environment:
