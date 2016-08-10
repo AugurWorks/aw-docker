@@ -1,5 +1,5 @@
 # https://github.com/fluent/fluentd-docker-image
-FROM fluent/fluentd:ubuntu-base
+FROM fluent/fluentd:v0.12.19
 MAINTAINER Duy Lam <duylamphuong@gmail.com>
 
 COPY fluent.conf /fluentd/etc/fluent.conf
