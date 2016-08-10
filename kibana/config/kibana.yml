@@ -46,7 +46,7 @@ request_timeout: 1200000
 shard_timeout: 0
 
 # Time in milliseconds to wait for Elasticsearch at Kibana startup before retrying
-# startup_timeout: 5000
+startup_timeout: 15000
 
 # Set to false to have a complete disregard for the validity of the SSL
 # certificate.
