@@ -1,6 +1,6 @@
 # EFK logging stack
 elasticsearch:
-  build: elasticsearch/
+  image: elasticsearch:5
   ports:
     - "9200"
     - "9300"

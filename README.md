@@ -8,3 +8,5 @@ Then bring up the stack with the following:
 ```bash
 docker-compose up -d
 ```
+
+Elasticsearch may run into an issue with `vm.max_map_count` not being high enough. Run `sudo sysctl -w vm.max_map_count=262144` on your host machine to resolve and restart the Elasticsearch container.
