@@ -1,6 +1,6 @@
 # EFK logging stack
 elasticsearch:
-  image: elasticsearch:5
+  image: elasticsearch:2
   ports:
     - "9200"
     - "9300"
@@ -9,7 +9,7 @@ elasticsearch:
   restart: always
 
 kibana:
-  image: kibana:5
+  image: kibana:4
   ports:
     - "5601:5601"
   labels:
@@ -18,7 +18,7 @@ kibana:
   links:
     - elasticsearch
   volumes:
-    - ./config/kibana.yml:/opt/kibana/config/kibana.yml
+    - config:/opt/kibana/config
   restart: always
 
 fluentd:
