@@ -63,3 +63,11 @@ engine:
     - mysql
     - fluentd
     - rabbitmq
+
+# Docker Management
+portainer:
+  image: portainer/portainer
+  ports:
+    - "9000:9000"
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
