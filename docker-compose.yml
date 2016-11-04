@@ -6,18 +6,23 @@ elasticsearch:
     - "9300"
   volumes:
     - /opt/data/elasticsearch:/usr/share/elasticsearch/data
+  restart: always
+
 kibana:
   build: kibana/
   ports:
     - "5601:5601"
   links:
     - elasticsearch
+  restart: always
+
 fluentd:
   build: fluentd/
   ports:
     - "24224:24224"
   links:
     - elasticsearch
+  restart: always
 
 # RabbitMQ
 rabbitmq:
