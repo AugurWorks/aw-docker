@@ -12,6 +12,9 @@ kibana:
   image: kibana:5
   ports:
     - "5601:5601"
+  labels:
+    - "traefik.backend=kibana"
+    - "traefik.frontend.rule=Host:kibana.localhost"
   links:
     - elasticsearch
   volumes:
@@ -53,13 +56,16 @@ mysql:
 engine:
   image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/engine:latest-dev
   ports:
-    - "80:8080"
+    - "8000:8080"
+  labels:
+    - "traefik.backend=engine"
+    - "traefik.frontend.rule=Host:engine.localhost"
   environment:
     - FLUENTD_HOST=fluentd
     - HOSTNAME=engine-docker
     - RDS_PASSWORD=docker
     - RDS_HOSTNAME=mysql
-    - SERVER_URL=http://localhost
+    - SERVER_URL=http://engine.localhost
   env_file: .env
   links:
     - mysql
@@ -71,5 +77,18 @@ portainer:
   image: portainer/portainer
   ports:
     - "9000:9000"
+  labels:
+    - "traefik.backend=portainer"
+    - "traefik.frontend.rule=Host:portainer.localhost"
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+
+# Proxy
+traefik:
+  image: traefik
+  command: --web --docker --docker.domain=localhost --logLevel=DEBUG
+  ports:
+    - "80:80"
+    - "8080:8080"
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
