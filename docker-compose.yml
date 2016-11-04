@@ -9,11 +9,13 @@ elasticsearch:
   restart: always
 
 kibana:
-  build: kibana/
+  image: kibana:5
   ports:
     - "5601:5601"
   links:
     - elasticsearch
+  volumes:
+    - ./config/kibana.yml:/opt/kibana/config/kibana.yml
   restart: always
 
 fluentd:
