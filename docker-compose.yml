@@ -10,11 +10,11 @@ elasticsearch:
 
 kibana:
   image: kibana:4
+  container_name: log
   ports:
     - "5601:5601"
   labels:
     - "traefik.backend=kibana"
-    - "traefik.frontend.rule=Host:kibana.localhost"
   links:
     - elasticsearch
   volumes:
@@ -55,11 +55,11 @@ mysql:
 # Engine
 engine:
   image: 274685854631.dkr.ecr.us-east-1.amazonaws.com/engine:latest-dev
+  container_name: engine
   ports:
     - "8000:8080"
   labels:
     - "traefik.backend=engine"
-    - "traefik.frontend.rule=Host:engine.localhost"
   environment:
     - FLUENTD_HOST=fluentd
     - HOSTNAME=engine-docker
@@ -75,11 +75,11 @@ engine:
 # Docker Management
 portainer:
   image: portainer/portainer
+  container_name: portainer
   ports:
     - "9000:9000"
   labels:
     - "traefik.backend=portainer"
-    - "traefik.frontend.rule=Host:portainer.localhost"
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 
