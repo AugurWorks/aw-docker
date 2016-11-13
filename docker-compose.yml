@@ -32,7 +32,8 @@ fluentd:
 # RabbitMQ
 rabbitmq:
   image: rabbitmq
-
+  ports:
+    - "5672:5672"
 
 # Alfred
 alfred:
@@ -92,3 +93,18 @@ traefik:
     - "8080:8080"
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
+
+# Backup: `zip -r jenkins.zip /opt/jenkins -x *.m2* -x *.gradle* -x *workspace* -x *.JDK* -x *GrailsInstallation* -x *cache*`
+# The mounted volume must have write permissions for the jenkins user, run `chown 1000:1000 -R /opt/jenkins`
+jenkins:
+  build: jenkins/
+  container_name: jenkins
+  ports:
+    - "8081:8080"
+  labels:
+    - "traefik.backend=jenkins"
+    - "traefik.port=8080"
+  volumes:
+    - /opt/jenkins:/var/jenkins_home
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/bin/docker:/usr/bin/docker
