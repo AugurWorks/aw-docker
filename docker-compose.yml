@@ -1,6 +1,6 @@
 # EFK logging stack
 elasticsearch:
-  image: elasticsearch:2
+  image: elasticsearch:5
   ports:
     - "9200"
     - "9300"
@@ -9,7 +9,7 @@ elasticsearch:
   restart: always
 
 kibana:
-  image: kibana:4
+  image: kibana:5
   container_name: log
   ports:
     - "5601:5601"
