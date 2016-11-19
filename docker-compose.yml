@@ -17,8 +17,6 @@ kibana:
     - "traefik.backend=kibana"
   links:
     - elasticsearch
-  volumes:
-    - config:/opt/kibana/config
   restart: always
 
 fluentd:
