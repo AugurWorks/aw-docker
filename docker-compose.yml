@@ -6,6 +6,7 @@ elasticsearch:
     - "9300"
   volumes:
     - /opt/data/elasticsearch:/usr/share/elasticsearch/data
+  log_driver: none
   restart: always
 
 kibana:
