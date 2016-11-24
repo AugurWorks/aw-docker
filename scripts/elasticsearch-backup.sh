@@ -5,6 +5,6 @@
 
 filename=`date +%H-%M-%S`-elasticsearch.zip
 zip -rq $filename /opt/data/elasticsearch/
-location=s3://augurworks-logs/`date +%Y/%m/%d/`
+location=s3://augurworks-backups/logs/`date +%Y/%m/%d/`
 /usr/local/bin/aws s3 cp $filename $location
 rm $filename
