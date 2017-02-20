@@ -84,6 +84,7 @@ portainer:
   labels:
     - "traefik.backend=portainer"
   volumes:
+    - /opt/data/portainer:/data
     - /var/run/docker.sock:/var/run/docker.sock
   restart: always
 
