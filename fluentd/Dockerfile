@@ -2,7 +2,7 @@
 FROM fluent/fluentd:v0.12.19
 MAINTAINER Duy Lam <duylamphuong@gmail.com>
 
-COPY fluent.conf /fluentd/etc/fluent.conf
-
 # Allow fluentd to forward to elasticsearch
-RUN gem install --no-ri --no-rdoc fluent-plugin-elasticsearch
+RUN gem install --no-ri --no-rdoc fluent-plugin-elasticsearch fluent-plugin-s3
+
+COPY fluent.conf /fluentd/etc/fluent.conf
