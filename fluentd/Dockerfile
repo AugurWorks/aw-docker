@@ -1,5 +1,5 @@
 # https://github.com/fluent/fluentd-docker-image
-FROM fluent/fluentd:v0.12.19
+FROM fluent/fluentd:v0.12
 MAINTAINER Duy Lam <duylamphuong@gmail.com>
 
 # Allow fluentd to forward to elasticsearch
