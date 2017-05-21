@@ -113,5 +113,4 @@ jenkins:
   volumes:
     - /opt/jenkins:/var/jenkins_home
     - /var/run/docker.sock:/var/run/docker.sock
-    - /usr/bin/docker:/usr/bin/docker
   restart: always
